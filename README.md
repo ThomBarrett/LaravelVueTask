@@ -1,66 +1,286 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Product Catalog Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+This application allows users to manage products with promotion-based pricing. The backend is built with **Laravel**, while the frontend is developed using **Vue.js** with **Vite** for fast development. The app features:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Product List**: Displays products with final prices after applying promotions.
+- **Pagination**: Handles large datasets by paginating the product list.
+- **API Endpoints**: Allows fetching product data via RESTful API.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Display products with **promotion-based pricing**.
+- Paginate the product list for better performance.
+- Fetch product data through **API**.
+- **Unit and Feature Tests** to ensure the backend works correctly.
+- Built with **Laravel** (Backend) and **Vue.js** (Frontend).
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Table of Contents
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- [Installation & Setup](#installation--setup)
+- [Database Setup](#database-setup)
+- [API Endpoints](#api-endpoints)
+- [Frontend (Vue.js)](#frontend-vuejs)
+- [Testing](#testing)
+- [Running the Application](#running-the-application)
+- [Conclusion](#conclusion)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Installation & Setup
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Prerequisites
 
-### Premium Partners
+Make sure the following software is installed on your machine:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **PHP** (version 8.0 or above)
+- **Composer**
+- **Node.js** and **npm**
+- **MySQL** or any preferred database
 
-## Contributing
+### Step 1: Clone the Repository
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Clone the project repository to your local machine:
 
-## Code of Conduct
+```bash
+git clone https://your-repository-url.git
+cd your-project-directory
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Step 2: Set Up the Backend (Laravel)
 
-## Security Vulnerabilities
+#### Install Dependencies
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Install the necessary **PHP** dependencies:
 
-## License
+```bash
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Set Up Environment
+
+Copy the `.env.example` file to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Update your **`.env`** file with the correct database credentials:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_user
+DB_PASSWORD=your_database_password
+```
+
+#### Generate Application Key
+
+Run this command to generate the application key:
+
+```bash
+php artisan key:generate
+```
+
+### Step 3: Set Up the Frontend (Vue.js)
+
+#### Install Frontend Dependencies
+
+Make sure **Node.js** and **npm** are installed. Then, run:
+
+```bash
+npm install
+```
+
+#### Run the Frontend Server
+
+Start the Vue.js development server:
+
+```bash
+npm run dev
+```
+
+This will start the frontend on **http://localhost:5173**.
+
+### Step 4: Run the Laravel Server
+
+Start the Laravel backend server:
+
+```bash
+php artisan serve
+```
+
+This will start the backend on **http://localhost:8000**.
+
+---
+
+## Database Setup
+
+### Step 1: Run Migrations
+
+Create the required tables in the database by running:
+
+```bash
+php artisan migrate
+```
+
+### Step 2: Seed the Database
+
+Insert sample data into the `products` table:
+
+```bash
+php artisan db:seed --class=ProductSeeder
+```
+
+If the `ProductSeeder` does not exist, create it:
+
+```bash
+php artisan make:seeder ProductSeeder
+```
+
+In the seeder file (`database/seeders/ProductSeeder.php`), add:
+
+```php
+use App\Models\Product;
+
+Product::create([
+    'title' => 'Smartphone',
+    'description' => 'Latest model smartphone',
+    'price' => 499.99,
+    'category' => 'electronics',
+    'promotion_percentage' => 10
+]);
+
+Product::create([
+    'title' => 'Laptop',
+    'description' => 'High performance laptop',
+    'price' => 1000.00,
+    'category' => 'electronics',
+    'promotion_percentage' => 15
+]);
+```
+
+Run the seeder:
+
+```bash
+php artisan db:seed --class=ProductSeeder
+```
+
+### Step 3: Check Data in Database
+
+Verify the data in the database using:
+
+```bash
+php artisan tinker
+```
+
+Then, run the following to view the products:
+
+```php
+Product::all();
+```
+
+---
+
+## API Endpoints
+
+### 1. Get All Products (Paginated)
+
+- **Endpoint**: `GET /api/products`
+- **Method**: `GET`
+- **Description**: Fetches a paginated list of products with their promotion-based pricing.
+- **Response**: A paginated list of products with `final_price`.
+
+Example response:
+
+```json
+{
+  "current_page": 1,
+  "data": [
+    {
+      "id": 1,
+      "title": "Smartphone",
+      "description": "Latest model smartphone",
+      "price": "500.00",
+      "category": "electronics",
+      "final_price": 450.00,
+      "created_at": "2025-02-17T21:31:07.000000Z",
+      "updated_at": "2025-02-17T21:31:07.000000Z"
+    }
+  ],
+  "first_page_url": "http://127.0.0.1:8000/api/products?page=1",
+  "last_page": 5,
+  "next_page_url": "http://127.0.0.1:8000/api/products?page=2",
+  "total": 50
+}
+```
+
+### 2. Get Single Product
+
+- **Endpoint**: `GET /api/products/{id}`
+- **Method**: `GET`
+- **Description**: Fetch a product by its ID with promotion-based pricing.
+- **Response**: A single product with `final_price`.
+
+Example response:
+
+```json
+{
+  "id": 1,
+  "title": "Smartphone",
+  "description": "Latest model smartphone",
+  "price": "500.00",
+  "category": "electronics",
+  "final_price": 450.00,
+  "created_at": "2025-02-17T21:31:07.000000Z",
+  "updated_at": "2025-02-17T21:31:07.000000Z"
+}
+```
+
+---
+
+## Frontend (Vue.js)
+
+### 1. Product List Page
+
+The product list page fetches data from the **`/api/products`** API and displays products with the **final_price** after applying promotions.
+
+### 2. Pagination Controls
+
+- **Previous Button**: Disables when you're on the first page.
+- **Next Button**: Disables when you're on the last page.
+- Displays the **current page** and **total pages**.
+
+---
+
+## Testing
+*Please note that running the tests may development test data*
+*Reseed the application after running tests*
+### 1. Run Unit Tests
+
+Run unit tests for controllers or other application logic:
+
+```bash
+php artisan test --filter ProductControllerTest
+```
+
+### 2. Run Feature Tests
+
+Test feature logic, like API responses and paginated product retrieval:
+
+```bash
+php artisan test --filter ProductControllerFeatureTest
+```
+
+### 3. Run All Tests
+
+Run all unit and feature tests:
+
+```bash
+php artisan test
+```
